@@ -32,11 +32,12 @@ def create_all_tables(drop=False):
                     Column('likes',Integer),
                     Column('creation_date',DateTime))
 
-    replies = Table('replies',metadata,
+    replies = Table('relations',metadata,
                     Column('id',Integer,Sequence('replies_seq'),primary_key=True),
                     Column('src_id',None,ForeignKey('content.id')),
                     Column('targ_id',None,ForeignKey('content.id')),
-                    Column('targuser',None,ForeignKey('posters.id')),
+                    Column('src_User',None,ForeignKey('posters.id')),
+                    Column('targ_user',None,ForeignKey('posters.id')),
                     Column('type',String(128)))
 
     quote = Table('quotes',metadata,
